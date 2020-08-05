@@ -28,8 +28,8 @@ function Perturbation(SetupChoice::Int,
     
   mon = Monitor(Ω, Ω->Ω.data, oneevery=OneEvery);
 
-    #initial 100 time units to settle the turbulent flow
-    ϕ(Ω, (0, 100), reset!(mon));
+    #initial 50 time units to settle the turbulent flow
+    ϕ(Ω, (0, 50), reset!(mon));
 
     #mag_pert set to 0.8 for all of the cases to ensure uniform response when averaging (magnitude to be determined)
 

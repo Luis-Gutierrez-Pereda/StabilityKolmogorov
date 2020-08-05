@@ -9,10 +9,7 @@ module StabilityKolmogorov
     import Serialization
     import Random
 
-    #including 
     include("setup.jl")
-    #include("initial_iterations.jl")
-    # include("no_perturbation.jl")
     include("Perturbation.jl")
     include("MergingFiles.jl")
 end
