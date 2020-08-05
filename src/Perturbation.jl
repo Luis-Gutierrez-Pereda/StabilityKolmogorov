@@ -26,7 +26,7 @@ function Perturbation(SetupChoice::Int,
     # forward map
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
     
-  mon = Monitor(Ω, Ω->Ω.data, oneevery=OneEvery);
+  mon = Monitor(Ω.data, oneevery=OneEvery);
 
     #initial 50 time units to settle the turbulent flow
     ϕ(Ω, (0, 50), reset!(mon));
