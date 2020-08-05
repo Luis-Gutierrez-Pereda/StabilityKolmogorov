@@ -1,0 +1,4 @@
+name = "StabilityKolmogorov"
+uuid = "4ef51a71-d3ac-45db-9dd8-7f68970cbd4a"
+authors = ["Lulas <luisgpereda@gmail.com>"]
+version = "0.1.0"
