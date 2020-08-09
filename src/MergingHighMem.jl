@@ -9,7 +9,8 @@ function MergingHighMem(JWaveNumber::Int,
 
     for i in 1:size(glob("tmp_*"),1)
         ave = mean(deserialize(glob("tmp_*")[i]))
-        total = vcat(total,ave)
+        total = push!(total,ave)
     end
-    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", mean(total))
+    total = mean(total)
+    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
 end
