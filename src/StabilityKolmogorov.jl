@@ -1,6 +1,16 @@
 module StabilityKolmogorov
 
     #Dependencies on other packages
+    import Flows
+    import OpenKolmogorovFlow
+    import DelimitedFiles
+    import Statistics
+    import Glob
+    import Serialization
+    import Random
+
+
+    
     using Flows
     using OpenKolmogorovFlow
     using DelimitedFiles
