@@ -37,7 +37,7 @@ function Perturbation(SetupChoice::Int,
     # end
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->copy(Ω.data));
+    mon = Monitor(Ω,(t,Ω)->copy(Ω.data[1:4,1:4]));
 
 
     #initial 50 time units to settle the turbulent flow
