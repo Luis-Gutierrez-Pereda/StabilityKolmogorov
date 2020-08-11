@@ -8,7 +8,7 @@ function MergingFiles(SetupChoice::Int,
 
      total = [];
 
-    for i in 1:size(glob("tmp_*"),1)
+    for i in 1:size(glob("tmp_*"),1)         
         if i==1
             ind = deserialize(glob("tmp_*")[i]);
             total = ind;
@@ -19,5 +19,5 @@ function MergingFiles(SetupChoice::Int,
     end
  
 
-    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
+    serialize("TransportTerm_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
 end
