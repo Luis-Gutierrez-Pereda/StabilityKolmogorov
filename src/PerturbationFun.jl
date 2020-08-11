@@ -1,6 +1,6 @@
-export Perturbation
+export PerturbationFun
 
-function Perturbation(SetupChoice::Int,
+function PerturbationFun(SetupChoice::Int,
                       JWaveNumber::Int,
                       KWaveNumber::Int,
                       PertTime::Int,
