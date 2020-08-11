@@ -19,5 +19,5 @@ function MergingFiles(SetupChoice::Int,
     end
  
 
-    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", mean(total))
+    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
 end
