@@ -26,18 +26,10 @@ function Perturbation(SetupChoice::Int,
     # forward map
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
 
-    # function fun(Ω)
-    #   Φ = invlaplacian!(similar(Ω),Ω)
-    #   v̂ = ddx!(similar(Φ), Φ)
-    #   v = IFFT(v̂)
-    #   ω = IFFT(Ω)
-    #   v .= v .* ω
-    #   vω = FFT(v,n)
-    #   return ddy!(similar(vω),vω)
-    # end
+    
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->copy(real.(Ω.data)), oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->copy(Ω.data), oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
@@ -50,6 +42,7 @@ function Perturbation(SetupChoice::Int,
 
     for i in 1:PertSamples
         Ω[KWaveNumber,JWaveNumber]+= PertMag;
+        Ω[end-KWaveNumber+1,JWaveNumber]+= PertMag;
         ϕ(Ω, (0, PertTime), reset!(mon));
         SamplePert = copy(samples(mon));
         push!(data,cat(SamplePert...,dims=3));
