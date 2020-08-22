@@ -12,6 +12,7 @@ function MergingHighMem(JWaveNumber::Int,
         total = push!(total,ave)
     end
     total = mean(total)
+    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
     #serialize("TransportTerm_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
-    serialize("Diss_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
+    #serialize("Diss_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", total)
 end
