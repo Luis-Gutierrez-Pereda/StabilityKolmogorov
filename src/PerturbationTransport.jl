@@ -42,12 +42,12 @@ function PerturbationTransport(SetupChoice::Int,
       dyΩ = ddy!(similar(Ω),Ω)
       dxω = IFFT(dxΩ)
       dyω = IFFT(dyΩ)
-      uω .= u .* dxω
-      vω .= v .* dyω
+      u .= u .* dxω
+      v .= v .* dyω
 
-      tr .= uω .+ vω
+      u .= u .+ v
 
-      tr = FFT(tr,n)
+      tr = FFT(u,n)
     
       return tr
     end
