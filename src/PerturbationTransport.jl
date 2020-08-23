@@ -1,6 +1,6 @@
-export PerturbationFun
+export PerturbationTransport
 
-function PerturbationFun(SetupChoice::Int,
+function PerturbationTransport(SetupChoice::Int,
                       JWaveNumber::Int,
                       KWaveNumber::Int,
                       PertTime::Int,
@@ -27,19 +27,26 @@ function PerturbationFun(SetupChoice::Int,
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
 
     function fun(Ω)
-      ω = IFFT(Ω)
-      ω = mean(ω,dims=2)
-      ω = repeat(ω,1,100)
-      ω = Field(ω)
-      Ω = FFT(ω,n)
 
       Φ = invlaplacian!(similar(Ω),Ω)
       v̂ = ddx!(similar(Φ), Φ)
+      û = ddy!(similar(Φ), Φ)
+      û = -û 
+      u = IFFT(û)
       v = IFFT(v̂)
-      ω = IFFT(Ω)
-      v .= v .* ω
-      vω = FFT(v,n)
-      return ddy!(similar(vω),vω)
+
+      dxΩ = ddx!(similar(Ω),Ω)
+      dyΩ = ddy!(similar(Ω),Ω)
+      dxω = IFFT(dxΩ)
+      dyω = IFFT(dyΩ)
+      uω .= u .* dxω
+      vω .= v .* dyω
+
+      tr .= uω .+ vω
+
+      tr = FFT(tr,n)
+    
+      return tr
     end
 
     # Monitor definition
