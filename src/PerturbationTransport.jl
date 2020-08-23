@@ -31,8 +31,11 @@ function PerturbationTransport(SetupChoice::Int,
       Φ = invlaplacian!(similar(Ω),Ω)
       v̂ = ddx!(similar(Φ), Φ)
       û = ddy!(similar(Φ), Φ)
-      û = -1.0 .* û 
+
       u = IFFT(û)
+      neg = u.data
+      neg = -1.0 .* neg
+      u = Field(neg)
       v = IFFT(v̂)
 
       dxΩ = ddx!(similar(Ω),Ω)
