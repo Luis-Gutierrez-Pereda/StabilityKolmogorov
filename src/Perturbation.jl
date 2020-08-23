@@ -26,10 +26,18 @@ function Perturbation(SetupChoice::Int,
     # forward map
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
 
+    function fun(Ω)
+        ω = IFFT(Ω)
+        ω = mean(ω,dims=2)
+        ω = repeat(ω,1,100)
+        ω = Field(ω)
+        Ω = FFT(ω,n)
+        return Ω.data
+      end
     
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->copy(Ω.data), oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->fun(Ω), oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
