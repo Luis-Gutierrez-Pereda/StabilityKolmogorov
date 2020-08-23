@@ -27,12 +27,12 @@ function PerturbationFun(SetupChoice::Int,
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
 
     function fun(Ω)
-        diss = ddy!(similar(Ω),Ω)
-        return ddy!(similar(diss),diss)
+        diss = laplacian!(similar(Ω),Ω)
+        return diss
     end
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->fun(Ω)[1:5,1:5], oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->fun(Ω), oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
