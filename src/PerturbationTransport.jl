@@ -53,7 +53,7 @@ function PerturbationTransport(SetupChoice::Int,
     end
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->fun(Ω), oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->fun(Ω)[0:5,0:5], oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
