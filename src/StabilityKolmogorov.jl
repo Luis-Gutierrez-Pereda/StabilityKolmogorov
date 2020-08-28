@@ -25,4 +25,5 @@ module StabilityKolmogorov
     include("MergingHighMem.jl")
     include("PerturbationTransport.jl")
     include("PerturbationDiss.jl")
+    include("mean.jl")
 end

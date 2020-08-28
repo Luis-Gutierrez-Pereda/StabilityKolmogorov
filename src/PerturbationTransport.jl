@@ -49,11 +49,11 @@ function PerturbationTransport(SetupChoice::Int,
 
       tr = FFT(u,n)
     
-      return tr
+      return tr.data
     end
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->fun(Ω)[0:5,0:5], oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->fun(Ω)[1:6,1:6], oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
