@@ -22,5 +22,6 @@ function MergingFiles(SetupChoice::Int,
     mean_std = vcat(mean(total), std(total) ./ sqrt(size(glob("tmp_*")[1],3)))
  
 
-    serialize("TransportTerm_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", mean_std)
+    serialize("Averaged_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", mean_std)
+    #serialize("TransportTerm_Pert_$(PertMag)_Omega_$(KWaveNumber),$(JWaveNumber)_Time_$(PertTime)", mean_std)
 end

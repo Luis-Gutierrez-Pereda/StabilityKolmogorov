@@ -27,7 +27,7 @@ function Perturbation(SetupChoice::Int,
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->Ω.data[1:6,1:6], oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->Ω.data[1:5,1:5], oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
