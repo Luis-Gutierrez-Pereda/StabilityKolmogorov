@@ -40,7 +40,7 @@ function Perturbation(SetupChoice::Int,
 
     for i in 1:PertSamples
         Ω[KWaveNumber,JWaveNumber]+= PertMag;
-        Ω[end-KWaveNumber+1,JWaveNumber]+= PertMag;
+        #Ω[end-KWaveNumber+1,JWaveNumber]+= PertMag;
         ϕ(Ω, (0, PertTime), reset!(mon));
         SamplePert = copy(samples(mon));
         push!(data,cat(SamplePert...,dims=3));
