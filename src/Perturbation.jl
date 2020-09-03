@@ -27,7 +27,7 @@ function Perturbation(SetupChoice::Int,
     ϕ = flow(N, L, CB3R2R3e(Ω), stepping);
 
     # Monitor definition
-    mon = Monitor(Ω,(t,Ω)->Ω.data[1:5,1:5], oneevery = OneEvery);
+    mon = Monitor(Ω,(t,Ω)->Ω.data, oneevery = OneEvery);
 
 
     #initial 50 time units to settle the turbulent flow
@@ -39,8 +39,20 @@ function Perturbation(SetupChoice::Int,
     data =[];
 
     for i in 1:PertSamples
-        Ω[KWaveNumber,JWaveNumber]+= PertMag;
+
+        #Ω[KWaveNumber,JWaveNumber]+= PertMag;
         #Ω[end-KWaveNumber+1,JWaveNumber]+= PertMag;
+
+        Ω[0,1] += 0.8
+        Ω[0,2] += 0.6
+        Ω[0,3] += 0.9
+        Ω[1,0] += 0.7
+        Ω[end,0] += 0.7
+        Ω[2,0] += 0.8
+        Ω[end-1,0] += 0.8
+        Ω[3,0] += 1
+        Ω[end-2,0] += 1
+
         ϕ(Ω, (0, PertTime), reset!(mon));
         SamplePert = copy(samples(mon));
         push!(data,cat(SamplePert...,dims=3));
